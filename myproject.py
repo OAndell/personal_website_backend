@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_restful import Api
 from resources.frontpage import Frontpage
+from resources.resume import Resume
 from resources.person import Person
 app = Flask(__name__)
 
@@ -10,6 +11,7 @@ api.add_resource(Frontpage, '/')
 
 api = Api(app)
 api.add_resource(Person, '/person')
+api.add_resource(Resume, '/resume')
 
 
 @app.route("/info")
