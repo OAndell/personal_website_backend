@@ -1,16 +1,12 @@
 import pymysql.cursors
 
-host = ''
-port = ''
-
 
 def get_connection():
   return pymysql.connect(
-    host=host,
-    user='',
-    password='',
-    db='',
-    port=port,
+    host='localhost',
+    user='root',
+    db='Andell',
+    port=3306,
     autocommit=True,
     cursorclass=pymysql.cursors.DictCursor,
   )
