@@ -6,6 +6,8 @@ from resources.person import Person
 from resources.auth import Auth
 from resources.person_edit import Person_edit
 from resources.resume_edit import Resume_edit
+from resources.resume_add import Resume_add
+
 
 app = Flask(__name__)
 
@@ -18,6 +20,7 @@ api.add_resource(Resume, '/resume')
 api.add_resource(Auth, '/auth')
 api.add_resource(Person_edit, '/person_edit')
 api.add_resource(Resume_edit, '/resume_edit')
+api.add_resource(Resume_add, '/resume_add')
 
 @app.route("/info")
 def main():

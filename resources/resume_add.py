@@ -8,36 +8,27 @@ import json
 parser = reqparse.RequestParser()
 parser.add_argument('username', type=str, required=True)
 parser.add_argument('password', type=str, required=True)
-parser.add_argument('newdata', type=str, required=True)
+parser.add_argument('personID', type=str, required=True)
 
 
-class Resume_edit(Resource):
+class Resume_add(Resource):
   
   def post(self):
     try:
        args = parser.parse_args()
        username=args['username']
        password=args['password']
+       personID=args['personID']
        salt = uuid.uuid4().hex
        user = execute('SELECT *  FROM user WHERE username = %s', username)
        if(user[0]['password'] == hashlib.sha512(password.encode()+ user[0]['salt'].encode()).hexdigest()):
-            newdataJson = json.loads(args['newdata'].replace("'",'"'))
-            if(newdataJson['title']=="" and newdataJson['body']==""):
-              execute('''
-                DELETE FROM resume 
-                WHERE id=%s''',
+            execute('''
+                INSERT INTO resume (personID, title, body) 
+                VALUES (%s, %s, %s)''',
                 (
-                  newdataJson['id']
-              ))
-            else:
-              execute('''
-                UPDATE resume SET 
-                title=%s, body=%s
-                WHERE personID=%s AND id=%s''',
-                (
-                  newdataJson['title'], newdataJson['body'],
-                  newdataJson['personID'], newdataJson['id']
-              ))
+                    personID, "<h2>New Title</h2>", "New Body"
+                )
+            )
             return {'success': True}
        else:
            return {'success': False}

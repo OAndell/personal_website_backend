@@ -16,5 +16,5 @@ class Resume(Resource):
   #get entries for a specific user
   def post(self):
      args = parser.parse_args()
-     return execute('SELECT *  FROM resume WHERE personID = %s ORDER BY displayorder', args['id'])
+     return execute('SELECT *  FROM resume WHERE personID = %s ORDER BY id', args['id'])
 
