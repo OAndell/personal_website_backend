@@ -24,19 +24,19 @@ class Theme_edit(Resource):
             newdataJson = json.loads(args['theme'].replace("'",'"'))
             execute('''
               INSERT INTO colortheme
-              (personID, main, background, background_lines, textcolor, textcolor2)
-              VALUES(%s, %s, %s, %s, %s, %s)
+              (personID, main, background, background_lines, textcolor, textcolor2, papercolor)
+              VALUES(%s, %s, %s, %s, %s, %s, %s)
               ON DUPLICATE KEY UPDATE
               main = %s, background=%s, background_lines=%s,
-              textcolor=%s, textcolor2=%s
+              textcolor=%s, textcolor2=%s, papercolor=%s
               ''',
               (
                 newdataJson['personID'], newdataJson['main'],
                 newdataJson['background'], newdataJson['background_lines'],
-                newdataJson['textcolor'], newdataJson['textcolor2'],
+                newdataJson['textcolor'], newdataJson['textcolor2'],newdataJson['papercolor'],
                 newdataJson['main'],newdataJson['background'],
                 newdataJson['background_lines'], newdataJson['textcolor'],
-                newdataJson['textcolor2']
+                newdataJson['textcolor2'], newdataJson['papercolor']
             ))
             
             return {'success': True}
