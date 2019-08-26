@@ -7,6 +7,10 @@ from resources.auth import Auth
 from resources.person_edit import Person_edit
 from resources.resume_edit import Resume_edit
 from resources.resume_add import Resume_add
+from resources.theme import Theme
+from resources.theme_edit import Theme_edit
+
+
 
 
 app = Flask(__name__)
@@ -21,6 +25,10 @@ api.add_resource(Auth, '/auth')
 api.add_resource(Person_edit, '/person_edit')
 api.add_resource(Resume_edit, '/resume_edit')
 api.add_resource(Resume_add, '/resume_add')
+api.add_resource(Theme, '/theme')
+api.add_resource(Theme_edit, '/theme_edit')
+
+
 
 @app.route("/info")
 def main():
